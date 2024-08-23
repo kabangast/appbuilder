@@ -1,0 +1,11 @@
+{
+    "user1": {
+      "password": "password123",
+      "apps": []
+    },
+    "user2": {
+      "password": "password456",
+      "apps": []
+    }
+  }
+  
