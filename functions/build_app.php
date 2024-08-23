@@ -23,16 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         shell_exec($cmd);
     }
 
-    // Replace gradle-wrapper.properties content
-    $gradlePropertiesPath = $appDir . 'android/gradle/wrapper/gradle-wrapper.properties';
-    $gradlePropertiesContent = <<<EOD
-distributionBase=GRADLE_USER_HOME
-distributionPath=wrapper/dists
-zipStoreBase=GRADLE_USER_HOME
-zipStorePath=wrapper/dists
-distributionUrl=https\://services.gradle.org/distributions/gradle-8.3-all.zip
-EOD;
+    // Path to the external gradle-wrapper.properties file
+    $externalGradlePropertiesPath = '../flutter_template/gradle-wrapper.properties';
 
+    // Read content from the external file
+    $gradlePropertiesContent = file_get_contents($externalGradlePropertiesPath);
+
+    if ($gradlePropertiesContent === false) {
+        echo "Error: Unable to read the external gradle-wrapper.properties file.";
+        exit;
+    }
+
+    // Path to the gradle-wrapper.properties file in the Flutter project
+    $gradlePropertiesPath = $appDir . 'android/gradle/wrapper/gradle-wrapper.properties';
+
+    // Write content to the gradle-wrapper.properties file
     if (file_put_contents($gradlePropertiesPath, $gradlePropertiesContent) === false) {
         echo "Error: Unable to update gradle-wrapper.properties.";
         exit;
@@ -75,5 +80,4 @@ EOD;
     }
 }
 ?>
-
 
