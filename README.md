@@ -23,7 +23,7 @@ App Builder is a web application that enables users to create customized Flutter
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/app-builder.git
+   https://github.com/kabangast/appbuilder.git
    cd app-builder
    ```
 
